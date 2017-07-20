@@ -1,8 +1,9 @@
 <?php
 require_once "config.php";
 
-$dao = new DAO();
+$users = new Users();
 
-$usuarios = $dao -> select("SELECT * FROM `users`");
+//$users->show(1);
+$users = Users::all();
 
-echo json_encode($usuarios);
+echo json_encode($users);

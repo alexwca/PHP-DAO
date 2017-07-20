@@ -4,9 +4,8 @@
  @Author Alex Willian
  @email alexwcaffonso@gmail.com
 */
-class DAO extends PDO
+class DAO extends \PDO
 {
-	
 	private $con;
 	private $dsn = "mysql:host=localhost;dbname=blog";
 	private $user = "root";
@@ -19,16 +18,16 @@ class DAO extends PDO
 
 	public function query($query, $params=[])
 	{
-		$stmt = $this->con->prepare($query);		
+		$stmt = $this->con->prepare($query);
 		$this->setParams($stmt, $params);
 		$stmt->execute();
-		return $stmt;		
+		return $stmt;
 	}
 
 	private function setParams($stmt, $params=[])
 	{
 		foreach ($params as $key => $value) {
-			$this->setParam($key, $value);
+			$this->setParam($stmt, $key, $value);
 		}
 	}
 
